@@ -77,12 +77,23 @@
         <div class="iframe-container" id="iframeContainer">
             <iframe id="canvaIframe" src="https://gamilo-mallari-wedding-2025.my.canva.site/home"></iframe>
         </div>
+
+        <!-- Hidden Audio Element -->
+        <audio id="bgMusic" loop>
+            <source src="bg.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
     <script>
         document.getElementById("envelope").addEventListener("click", function() {
             this.style.display = "none"; // Hide the envelope after click
             document.getElementById("iframeContainer").style.display = "block";
+        });
+
+        // Play audio when the iframe has fully loaded
+        document.getElementById("canvaIframe").addEventListener("load", function() {
+            let audio = document.getElementById("bgMusic");
+            audio.play().catch(error => console.log("Autoplay blocked: " + error));
         });
     </script>
 
