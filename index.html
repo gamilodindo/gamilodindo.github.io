@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autoplay Audio v1.4</title>
+    <title>Autoplay Audio v1.5</title>
 </head>
 <body>
     <button id="playButton">Click to Enable Audio</button>
@@ -11,14 +11,22 @@
         <source src="/bg.mp3" type="audio/mpeg">
     </audio>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        let audio = document.getElementById("bgMusic");
-            if (audio.paused) {
-                audio.muted = false;
-                audio.play();
-            }
-    });
+<script>
+
+window.onload = function() {
+     setTimeout(function() {
+                document.getElementById("playButton").click();
+            }, 1000); // Simulate a click after 1 second
+};
+
+
+ document.getElementById("playButton").addEventListener("click", function() {
+     alert("test");
+            let audio = document.getElementById("bgMusic");
+            audio.muted = false;
+            audio.play();
+        });
+    
 </script>
     
 </body>
