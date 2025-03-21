@@ -11,6 +11,7 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            text-align: center;
         }
 
         .envelope {
@@ -50,12 +51,35 @@
     </audio>
 
     <script>
+        function redirectToChrome() {
+            var userAgent = navigator.userAgent.toLowerCase();
+            var isAndroid = userAgent.includes("android");
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+            var chromeURL = "googlechrome://https://gamilo-mallari-wedding-2025.my.canva.site/home";
+            var normalURL = "https://gamilo-mallari-wedding-2025.my.canva.site/home";
+
+            if (isAndroid || isIOS) {
+                window.location.href = chromeURL;
+                setTimeout(function () {
+                    window.location.href = normalURL; // Fallback if Chrome isn't installed
+                }, 2000);
+            }
+        }
+
+        function isNotChrome() {
+            return !/Chrome/.test(navigator.userAgent) || /Version\/[\d\.]+.*Safari/.test(navigator.userAgent);
+        }
+
         document.getElementById("envelope").addEventListener("click", function() {
             let audio = document.getElementById("bgMusic");
             audio.play().catch(error => console.log("Autoplay blocked: " + error));
             
-            // Open Canva website in a new tab
-            window.open("https://gamilo-mallari-wedding-2025.my.canva.site/home", "_blank");
+            if (isNotChrome()) {
+                redirectToChrome();
+            } else {
+                window.open("https://your-canva-website-link.com", "_blank");
+            }
         });
     </script>
 
