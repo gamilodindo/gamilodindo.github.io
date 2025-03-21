@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autoplay Audio v1.3</title>
+    <title>Autoplay Audio v1.4</title>
 </head>
 <body>
     <button id="playButton">Click to Enable Audio</button>
@@ -13,14 +13,11 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", () => {
-        alert("test");
-        document.body.addEventListener("click", function() {
-            let audio = document.getElementById("bgMusic");
+        let audio = document.getElementById("bgMusic");
             if (audio.paused) {
                 audio.muted = false;
                 audio.play();
             }
-        }, { once: true }); // Ensures it only runs once
     });
 </script>
     
