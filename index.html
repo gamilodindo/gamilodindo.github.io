@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Envelope</title>
+    <title>Version 2</title>
     <style>
         body {
             display: flex;
@@ -47,7 +47,7 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="bg.mp3" type="audio/mpeg">
+        <source src="your-audio-file.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -82,7 +82,7 @@
             if (isNotChrome()) {
                 redirectToChrome();
             } else {
-                window.open("https://gamilo-mallari-wedding-2025.my.canva.site/home", "_blank");
+                window.open(normalURL, "_blank");
             }
         });
     </script>
