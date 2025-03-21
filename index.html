@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Version 3</title>
+    <title>Version 4</title>
     <style>
         body {
             display: flex;
@@ -47,43 +47,40 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="your-audio-file.mp3" type="audio/mpeg">
+        <source src="bg.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        function redirectToChrome() {
+        function openInChrome() {
             var userAgent = navigator.userAgent.toLowerCase();
             var isAndroid = userAgent.includes("android");
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-            var chromeURL = "googlechrome://https://gamilo-mallari-wedding-2025.my.canva.site/home";
-            var normalURL = "https://gamilo-mallari-wedding-2025.my.canva.site/home";
+            var canvaURL = "https://gamilo-mallari-wedding-2025.my.canva.site/home";
+            var chromeURL = "googlechrome://" + canvaURL.replace(/^https?:\/\//, '');
 
             if (isAndroid || isIOS) {
                 window.location.href = chromeURL;
-                setTimeout(function () {
-                    window.location.href = normalURL;
-                }, 2000);
-            }
-        }
 
-        function isNotChrome() {
-            return !/Chrome/.test(navigator.userAgent) || /Version\/[\d\.]+.*Safari/.test(navigator.userAgent);
+                // Fallback if Chrome isn't installed
+                setTimeout(function () {
+                    window.location.href = canvaURL;
+                }, 2000);
+            } else {
+                window.location.href = canvaURL;
+            }
         }
 
         document.getElementById("envelope").addEventListener("click", function() {
             let audio = document.getElementById("bgMusic");
 
-            // Play audio after a delay (Messenger needs user interaction first)
+            // Play audio after a delay (Messenger needs user interaction)
             setTimeout(() => {
                 audio.play().catch(error => console.log("Autoplay blocked: " + error));
             }, 1000);
 
-            if (isNotChrome()) {
-                redirectToChrome();
-            } else {
-                window.open("https://gamilo-mallari-wedding-2025.my.canva.site/home", "_blank");
-            }
+            // Open Canva website in Chrome
+            openInChrome();
         });
     </script>
 
