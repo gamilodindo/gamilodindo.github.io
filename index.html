@@ -5,24 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Envelope</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
-        }
-
-        .container {
-            position: relative;
-            text-align: center;
         }
 
         .envelope {
@@ -49,51 +37,25 @@
             clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
         }
 
-        .iframe-container {
-            display: none;
-            width: 90%;
-            height: 80vh;
-            margin-top: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="envelope" id="envelope">
-            <div class="flap"></div>
-        </div>
-
-        <div class="iframe-container" id="iframeContainer">
-            <iframe id="canvaIframe" src="https://gamilo-mallari-wedding-2025.my.canva.site/home"></iframe>
-        </div>
-
-        <!-- Hidden Audio Element -->
-        <audio id="bgMusic" loop>
-            <source src="bg.mp3" type="audio/mpeg">
-        </audio>
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
     </div>
+
+    <audio id="bgMusic" loop>
+        <source src="bg.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         document.getElementById("envelope").addEventListener("click", function() {
-            this.style.display = "none"; // Hide the envelope after click
-            document.getElementById("iframeContainer").style.display = "block";
-        });
-
-        // Play audio when the iframe has fully loaded
-        document.getElementById("canvaIframe").addEventListener("load", function() {
             let audio = document.getElementById("bgMusic");
             audio.play().catch(error => console.log("Autoplay blocked: " + error));
+            
+            // Open Canva website in a new tab
+            window.open("https://gamilo-mallari-wedding-2025.my.canva.site/home", "_blank");
         });
     </script>
 
